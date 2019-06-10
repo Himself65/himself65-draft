@@ -2,7 +2,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-
+.idea
 
 
 # Thumbnails
@@ -188,6 +188,3 @@ package-lock.json
 _site/
 .sass-cache/
 .jekyll-metadata
-
-# JetBrain
-.idea
