@@ -5,7 +5,7 @@ tags: nodejs, javascript, c++
 
 # 前言
 
-Node.js（下文称作Node）在 v8.x 版本中加入了 Native-API，亦在独立于底层代码（如v8），这样可以完美支持C++插件在Node不同版本中使用。因为官方给出的实例不够明确，本文简单介绍并入门N-API。
+Node.js（下文称作Node）在 v8.x 版本中加入了 Native-API，意在独立于底层代码（如v8），这样可以完美支持C++插件在Node不同版本中使用。因为官方给出的实例不够明确，本文简单介绍并入门N-API。
 
 ## 初始化项目
 
