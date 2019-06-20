@@ -127,6 +127,78 @@ napi_value init(napi_env env, napi_value exports) {
 module.exports = require('./build/Release/test')
 ```
 
+```cpp
+#include <node_api.h>
+
+#define NAPI_ASSERT_BASE(env, assertion, message, ret_val)               \
+  do {                                                                   \
+    if (!(assertion)) {                                                  \
+      napi_throw_error(                                                  \
+          (env),                                                         \
+        NULL,                                                            \
+          "assertion (" #assertion ") failed: " message);                \
+      return ret_val;                                                    \
+    }                                                                    \
+  } while (0)
+
+#define NAPI_ASSERT(env, assertion, message)                             \
+  NAPI_ASSERT_BASE(env, assertion, message, NULL)
+
+#define DECLARE_NAPI_PROPERTY(name, func)                                \
+  { (name), NULL, (func), NULL, NULL, NULL, napi_default, NULL }
+
+struct MyObject {
+	int32_t val;
+};
+
+static napi_value Create(napi_env env, napi_callback_info info) {
+	size_t argc = 1;
+	napi_value args[1];
+
+	napi_get_cb_info(env, info, &argc, args, NULL, NULL);
+	NAPI_ASSERT(env, argc >= 1, "Wrong number of arguments");
+	napi_valuetype valuetype;
+	napi_typeof(env, args[0], &valuetype);
+	NAPI_ASSERT(
+		env, valuetype == napi_number, "Wrong argument type. Number expected");
+
+	MyObject* external = new MyObject();
+	napi_get_value_int32(env, args[0], &(external->val));
+	napi_value val;
+	napi_create_external(env, external, nullptr, nullptr, &val);
+	return val;
+}
+
+static napi_value ToInt32(napi_env env, napi_callback_info info) {
+	size_t argc = 1;
+	napi_value args[1];
+
+	napi_get_cb_info(env, info, &argc, args, NULL, NULL);
+	NAPI_ASSERT(env, argc >= 1, "Wrong number of arguments");
+	napi_valuetype valuetype;
+	napi_typeof(env, args[0], &valuetype);
+	NAPI_ASSERT(env,
+		valuetype == napi_external,
+		"Wrong argument type. External expected");
+	MyObject* external;
+	napi_value val;
+	napi_get_value_external(env, args[0], reinterpret_cast<void**>(&external));
+	napi_create_int32(env, external->val, &val);
+	return val;
+}
+
+napi_value Init(napi_env env, napi_value exports) {
+	napi_property_descriptor desc[] = {
+		DECLARE_NAPI_PROPERTY("createExternal", Create),
+		DECLARE_NAPI_PROPERTY("getVal", ToInt32),
+	};
+	napi_define_properties(env, exports, 2, desc);
+	return exports;
+}
+
+NAPI_MODULE(NODE_GYP_MODULE_NAME, Init)
+```
+
 测试就可以开始写了，如下
 
 ```js
