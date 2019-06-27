@@ -1,6 +1,6 @@
 ---
 title: N-API初探
-tags: nodejs, javascript, c++
+tags: nodejs javascript c++
 ---
 
 # 前言
