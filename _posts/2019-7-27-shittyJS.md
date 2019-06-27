@@ -1,5 +1,5 @@
 ---
-title: JavaScript的神奇bug
+title: JavaScript的语言陷阱
 tags: javascript
 ---
 
