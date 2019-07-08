@@ -14,4 +14,4 @@ tags: algorithm 算法
 
 五种情况，不一一细说了
 
-// tood
+// todo
