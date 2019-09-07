@@ -15,15 +15,15 @@ tags: 翻译
 
 如果你说你不知道
 
-[](https://ruslanspivak.com/lsbasi-part1/lsbasi_part1_i_dont_know.png)
+![](https://ruslanspivak.com/lsbasi-part1/lsbasi_part1_i_dont_know.png)
 
 或者你说你不知道并且对此十分的激动
 
-[](https://ruslanspivak.com/lsbasi-part1/lsbasi_part1_omg.png)
+![](https://ruslanspivak.com/lsbasi-part1/lsbasi_part1_omg.png)
 
 不要担心。如果你坚持完成这个系列，并和我一起搭建一个解释器和编译器，你最终就会知道他们的原理的。然后你也就会变成一个高兴又自信的人。至少我是这么觉得。
 
-[](https://ruslanspivak.com/lsbasi-part1/lsbasi_part1_i_know.png)
+![](https://ruslanspivak.com/lsbasi-part1/lsbasi_part1_i_know.png)
 
 为啥你会去学编译器和解释器呢？我给你三个理由
 
